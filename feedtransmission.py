@@ -20,8 +20,8 @@ def readAddedItems():
 
 # add the link to transmission and appends the link to the added items
 def addItem(item):
-	logging.info("Adding Torrent: " + item.title + " (" + item.link + ")")
-	tc.add_torrent(item.link)
+	logging.info("Adding Torrent: " + item.title + " (" + item.link + ") to " + args.download_dir)
+	tc.add_torrent(item.link, download_dir = args.download_dir)
 	with open(added_items_filepath, 'a') as f:
 		f.write(item.link + '\n')
 
@@ -68,6 +68,11 @@ parser.add_argument('--log-file',
 parser.add_argument('--clear-added-items',
 					action='store_true',
 					help='Clears the list of added torrents. You can also do that by deleting the addeditems.txt')
+
+parser.add_argument('--download-dir',
+					default=None,
+					action='store_true',
+					help='Where to put the downloads')
 
 # parse the arguments
 args = parser.parse_args()
