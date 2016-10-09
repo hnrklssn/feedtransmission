@@ -20,7 +20,10 @@ def readAddedItems():
 
 # add the link to transmission and appends the link to the added items
 def addItem(item):
-	logging.info("Adding Torrent: " + item.title + " (" + item.link + ") to " + args.download_dir)
+	if args.download_dir:
+		logging.info("Adding Torrent: " + item.title + " (" + item.link + ") to " + args.download_dir)
+	else:
+		logging.info("Adding Torrent: " + item.title + " (" + item.link + ") to default directory")
 	tc.add_torrent(item.link, download_dir = args.download_dir)
 	with open(added_items_filepath, 'a') as f:
 		f.write(item.link + '\n')
