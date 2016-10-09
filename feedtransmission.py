@@ -86,6 +86,7 @@ if __name__ == "__main__":
 	else:
 		logging.basicConfig(format='%(asctime)s: %(message)s',level=logging.DEBUG)
 
+	logging.info("Feedtransmission running...")
 
 	# clears the added items file if asked for
 	if args.clear_added_items:
@@ -105,3 +106,4 @@ if __name__ == "__main__":
 	for feed_url in args.feed_urls:
 		parseFeed(feed_url)
 
+	logging.info("Feedtransmission finished!")
